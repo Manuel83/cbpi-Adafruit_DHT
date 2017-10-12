@@ -24,13 +24,18 @@ class AdafruitDHTSensor(SensorPassive):
             return "°C"
 
     def read(self):
+        
+        self.api.app.logger.info("Read Adafruit_DHT")
+        self.api.app.logger.info("GPIO %s type %s" % (self.gpio, self.type))
         try:
             sensor = Adafruit_DHT.DHT22
             pin = int(self.gpio)
             humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+            self.api.app.logger.info(humidity)
+            self.api.app.logger.info(temperature)
             if self.type == "humidity":
                 return humidity
             if self.type == "temperature":
                 return temperature
         except Exception as e:
-            print e
+            self.api.app.logger.error("Adafruit_DHT ERROR")
