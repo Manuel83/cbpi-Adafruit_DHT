@@ -34,8 +34,8 @@ class AdafruitDHTSensor(SensorPassive):
             self.api.app.logger.info(humidity)
             self.api.app.logger.info(temperature)
             if self.type == "humidity":
-                return humidity
+                self.data_received(round(humidity, 2))
             if self.type == "temperature":
-                return temperature
+                self.data_received(round(temperature, 2))
         except Exception as e:
             self.api.app.logger.error("Adafruit_DHT ERROR")
