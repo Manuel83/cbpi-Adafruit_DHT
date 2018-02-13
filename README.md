@@ -1,5 +1,3 @@
-# NOT TESTED NOW!!!! UNDER DEVELOPMENT
-
 # CraftBeerPi Adafruit_DHT sensor
 Adafruit_DHT Plugin for combind humidity and temperature sensor. 
 
