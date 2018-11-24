@@ -21,10 +21,7 @@ class AdafruitDHTSensor(SensorPassive):
         if self.type == "humidity":
             return "%"
         if self.type == "temperature":
-            if self.get_config_parameter("unit", "C") == "C":
-                    return "°C";
-                else:
-                    return "°F";
+            return "°C" if self.get_config_parameter("unit", "C") == "C" else "°F"
                 
     def read(self):
         
