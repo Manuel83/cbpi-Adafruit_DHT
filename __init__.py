@@ -12,6 +12,7 @@ class AdafruitDHTSensor(SensorPassive):
 
     gpio = Property.Select("GPIO", options=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27], description="GPIO to which the actor is connected")
     type = Property.Select("TYPE", options=["humidity", "temperature"])
+    sensorType = Property.Select("DHT TYPE", options={"DHT22", "DHT11"])
 
     def get_unit(self):
         '''
@@ -27,8 +28,12 @@ class AdafruitDHTSensor(SensorPassive):
         
         self.api.app.logger.info("Read Adafruit_DHT")
         self.api.app.logger.info("GPIO %s type %s" % (self.gpio, self.type))
+        self.api.app.logger.info("DHT Type %s" % (self.sensorType))
+        if self.sensorType == "DHT22":
+            sensor = Adafruit_DHT.DHT22                                         
+        else:
+            sensor = Adafruit_DHT.DHT11
         try:
-            sensor = Adafruit_DHT.DHT22
             pin = int(self.gpio)
             humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
             self.api.app.logger.info(humidity)
