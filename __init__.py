@@ -44,6 +44,6 @@ class AdafruitDHTSensor(SensorPassive):
                 if self.get_config_parameter("unit", "C") == "C":
                     self.data_received(round(temperature, 2))
                 else:
-                    self.data_received(round(9.0 / 5.0 * temperature + 32, 2))
+                    self.data_received(round((9.0 / 5.0 * temperature) + 32, 2))
         except Exception as e:
             self.api.app.logger.error("Adafruit_DHT ERROR")
