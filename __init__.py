@@ -26,7 +26,7 @@ class AdafruitDHTSensor(SensorPassive):
                 
     def read(self):
         
-        self.api.app.logger.info("Read Adafruit_DHT: version %s" % (Adafruit_DHT.__version__))
+        self.api.app.logger.info("Read Adafruit_DHT")
         self.api.app.logger.info("GPIO %s type %s" % (self.gpio, self.type))
         self.api.app.logger.info("DHT Type %s" % (self.sensorType))
         if self.sensorType == "DHT22":
